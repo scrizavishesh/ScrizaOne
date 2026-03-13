@@ -1,0 +1,427 @@
+You are a Senior Frontend Architect and React Engineer.
+
+Your task is to build a complete production-ready SaaS Dashboard Application using React.js and Redux Toolkit based on the Figma design that I will provide.
+
+You must follow clean architecture, scalable folder structure, reusable components, API layer separation, and best frontend practices.
+
+The UI must match the Figma design pixel perfectly including layout, spacing, typography, colors, cards, and dashboards.
+
+Tech Stack (Strictly Follow)
+
+Build the project using:
+
+React.js (latest)
+
+Redux Toolkit
+
+React Router v6
+
+Axios
+
+Axios Interceptors
+
+TailwindCSS (preferred) OR modular CSS
+
+Recharts (for charts)
+
+React Hook Form (for forms)
+
+Clean reusable component architecture
+
+Application Type
+
+This is a multi-service SaaS admin dashboard where:
+
+Admin users can
+
+login
+
+create organization
+
+access services
+
+manage agents
+
+access chat interface
+
+Figma Based UI
+
+I will provide a Figma link.
+
+Your task:
+
+Analyze Figma
+
+Extract layout structure
+
+Convert each screen into React components
+
+Maintain exact spacing and UI hierarchy
+
+Screens include:
+
+Login Page
+
+Signup Page
+
+Welcome Dashboard
+
+Application Selection
+
+WhatsApp Dashboard
+
+Agents Management
+
+Chat Interface
+
+Required Folder Architecture
+
+Create a scalable architecture.
+
+src
+ ├── app
+ │   └── store.js
+ │
+ ├── services
+ │   ├── apiClient.js
+ │   ├── axiosInterceptor.js
+ │
+ ├── features
+ │   ├── auth
+ │   │   ├── authSlice.js
+ │   │   ├── authAPI.js
+ │
+ │   ├── company
+ │   │   ├── companySlice.js
+ │
+ │   ├── applications
+ │   │   ├── applicationSlice.js
+ │
+ │   ├── agents
+ │   │   ├── agentSlice.js
+ │
+ ├── pages
+ │   ├── Login
+ │   ├── Signup
+ │   ├── Dashboard
+ │   ├── Applications
+ │   ├── WhatsAppDashboard
+ │   ├── Agents
+ │   ├── Chat
+ │
+ ├── components
+ │   ├── Layout
+ │   ├── Sidebar
+ │   ├── Header
+ │   ├── Cards
+ │   ├── Tables
+ │   ├── Forms
+ │   ├── Modals
+ │
+ ├── routes
+ │   ├── ProtectedRoutes.jsx
+ │
+ └── App.jsx
+Axios API Layer
+
+Create a centralized API client.
+
+Example:
+
+const api = axios.create({
+ baseURL: process.env.REACT_APP_API_URL
+})
+Axios Interceptor
+
+Implement interceptor to:
+
+Attach token automatically
+
+Authorization: Bearer token
+
+Handle
+
+401 errors
+
+expired token
+
+global error handling
+
+Authentication Flow
+
+Application must start with:
+
+Login Page
+
+User can navigate to signup.
+
+Signup API
+
+POST
+
+http://89.116.122.211:5002/login/signup
+
+Body
+
+{
+ "adminEmail":"",
+ "adminPhone":"",
+ "password":""
+}
+
+After success → redirect to login page.
+
+Login API
+
+POST
+
+http://89.116.122.211:5002/login/all
+
+Body
+
+{
+ "email":"",
+ "password":""
+}
+
+Response returns
+
+token
+
+userId
+
+companyId
+
+role
+
+Save these values in:
+
+Redux
+
+localStorage
+
+After Login Flow
+
+After login user goes to Dashboard page.
+
+Check condition:
+
+companyId === null
+
+If true → show Create Organization Modal Popup.
+
+Create Organization API
+
+POST
+
+http://89.116.122.211:5002/company/create
+
+Headers
+
+Authorization: Bearer token
+
+Body
+
+{
+ "companyName":"",
+ "companyEmailId":"",
+ "companyPhone":"",
+ "companyAddress":"",
+ "companyDescription":"",
+ "companyEstablishedDate":""
+}
+
+After success:
+
+Update Redux company state
+
+Close modal
+
+Load applications
+
+Get Applications API
+
+GET
+
+http://192.168.20.109:5002/application/getAll
+
+Response returns
+
+applications[]
+
+Render these applications as service cards exactly like Figma.
+
+Example services:
+
+WhatsApp
+
+Facebook
+
+Instagram
+
+Application Navigation
+
+When user clicks:
+
+Example
+
+WhatsApp
+
+Redirect to:
+
+/whatsapp-dashboard
+WhatsApp Dashboard
+
+Recreate UI exactly like Figma.
+
+Components include:
+
+Metrics Cards
+
+Charts
+
+Graphs
+
+Active agents data
+
+Conversations metrics
+
+Charts should use Recharts.
+
+Data can be mocked for now.
+
+Agents Management
+
+Agents page must include:
+
+Table list
+
+Add agent modal
+
+Agent status badges
+
+Edit & Delete buttons (UI only)
+
+Create Agent API
+
+POST
+
+http://192.168.20.109:5002/user/create
+
+Form Data
+
+userName
+userEmail
+userPhoneNo
+userAddress
+userGender
+designation
+roleType=AGENT
+
+After success → refresh agents list.
+
+Get Agents API
+
+GET
+
+http://89.116.122.211:5002/user/getAll?search=ACTIVE
+
+Render table columns:
+
+Name
+
+Email
+
+Phone
+
+Role
+
+Status
+
+Actions
+
+Chat Section
+
+Build chat UI from Figma.
+
+Features include:
+
+chat list
+
+message thread
+
+reply input
+
+label filters
+
+Use static mock data because APIs are not ready.
+
+Global Layout
+
+All pages must include:
+
+Sidebar
+
+Menu:
+
+Dashboard
+
+WhatsApp
+
+Agents
+
+Chat
+
+Header
+
+search
+
+notifications
+
+profile dropdown
+
+Routing
+
+Implement protected routes.
+
+If token not available → redirect to login.
+
+UI Rules
+
+Follow these rules:
+
+pixel perfect Figma implementation
+
+responsive layout
+
+reusable components
+
+consistent spacing
+
+modern UI
+
+Final Output
+
+Generate a fully working React project including:
+
+authentication flow
+
+redux store
+
+axios interceptor
+
+protected routes
+
+API integration
+
+dashboards
+
+agents management
+
+chat UI
+
+Important
+
+Do NOT generate placeholder UI.
+
+Use the exact Figma design to replicate the application.
