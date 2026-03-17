@@ -19,5 +19,5 @@ images:
     aspect_ratio: "1:1"
 
 notes:
-  - The API URL http://89.116.122.211:5002 is HTTP, which may cause Mixed Content warnings if the dashboard is served over HTTPS. The UI includes fallback mock states and graceful error handling for this scenario.
+  - The API URL https://test.edu2all.in/scz/ is HTTP, which may cause Mixed Content warnings if the dashboard is served over HTTPS. The UI includes fallback mock states and graceful error handling for this scenario.
   - Redux is used for global state sync, while TanStack Query handles server state and caching.

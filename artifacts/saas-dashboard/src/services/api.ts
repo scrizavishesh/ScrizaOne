@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { store, logout } from '../store';
 
-const API_BASE_URL = 'http://89.116.122.211:5002';
+const API_BASE_URL = 'https://test.edu2all.in/scz/';
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
