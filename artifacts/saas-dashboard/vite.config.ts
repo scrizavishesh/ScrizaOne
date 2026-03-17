@@ -2,9 +2,8 @@ import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
-import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
-export default defineConfig( async ({ mode }) => {
+export default defineConfig(async ({ mode }) => {
   const env = loadEnv(mode, import.meta.dirname, "");
   const rawPort = env.PORT ?? process.env.PORT ?? "5173";
   const port = Number(rawPort);
@@ -17,24 +16,12 @@ export default defineConfig( async ({ mode }) => {
 
   return {
     base: basePath,
+
     plugins: [
       react(),
       tailwindcss(),
-      runtimeErrorOverlay(),
-      ...(process.env.NODE_ENV !== "production" &&
-      process.env.REPL_ID !== undefined
-        ? [
-            await import("@replit/vite-plugin-cartographer").then((m) =>
-              m.cartographer({
-                root: path.resolve(import.meta.dirname, ".."),
-              }),
-            ),
-            await import("@replit/vite-plugin-dev-banner").then((m) =>
-              m.devBanner(),
-            ),
-          ]
-        : []),
     ],
+
     resolve: {
       alias: {
         "@": path.resolve(import.meta.dirname, "src"),
@@ -42,16 +29,19 @@ export default defineConfig( async ({ mode }) => {
           import.meta.dirname,
           "..",
           "..",
-          "attached_assets",
+          "attached_assets"
         ),
       },
       dedupe: ["react", "react-dom"],
     },
+
     root: path.resolve(import.meta.dirname),
+
     build: {
       outDir: path.resolve(import.meta.dirname, "dist/public"),
       emptyOutDir: true,
     },
+
     server: {
       port,
       host: "0.0.0.0",
@@ -61,6 +51,7 @@ export default defineConfig( async ({ mode }) => {
         deny: ["**/.*"],
       },
     },
+
     preview: {
       port,
       host: "0.0.0.0",
