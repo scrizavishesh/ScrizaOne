@@ -24,9 +24,9 @@ export default function Signup() {
     <div className="min-h-screen w-full flex bg-muted/30">
       <div className="w-full max-w-md m-auto p-4 sm:p-8 animate-slide-up">
         <div className="flex flex-col items-center text-center mb-8">
-          <div className="h-12 w-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-6 shadow-sm">
-            <LayoutDashboard className="h-7 w-7" />
-          </div>
+           <div className="mb-6">
+              <img src="/Main_logo.png" alt="SocialOne Logo" className="h-12 w-auto" />
+            </div>
           <h1 className="text-3xl font-display font-bold text-foreground">Create account</h1>
           <p className="mt-2 text-muted-foreground">Start managing your business smartly</p>
         </div>
@@ -72,6 +72,18 @@ export default function Signup() {
             Sign in
           </Link>
         </p>
+      </div>
+
+
+      {/* Right side - Hero Image */}
+      <div className="hidden lg:block lg:w-1/2 relative bg-white overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img
+            src="/Signup_page.png"
+            alt="Abstract background"
+            className="max-w-full max-h-full object-contain"
+          />
+        </div>
       </div>
     </div>
   );

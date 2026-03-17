@@ -35,7 +35,7 @@ function CreateAgentModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
             <X className="h-5 w-5" />
           </button>
         </div>
-        
+
         <div className="p-6 overflow-y-auto">
           <form id="agent-form" onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <Input label="Full Name" placeholder="Jane Doe" {...register('userName')} error={errors.userName?.message} />
@@ -45,11 +45,11 @@ function CreateAgentModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
             </div>
             <Input label="Designation" placeholder="e.g. Sales Representative" {...register('designation')} error={errors.designation?.message} />
             <Input label="Address" placeholder="City, Country" {...register('userAddress')} error={errors.userAddress?.message} />
-            
+
             <div className="space-y-2">
               <label className="text-sm font-semibold text-foreground">Gender</label>
-              <select 
-                {...register('userGender')} 
+              <select
+                {...register('userGender')}
                 className="flex w-full rounded-xl border-2 border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
               >
                 <option value="MALE">Male</option>
@@ -57,9 +57,22 @@ function CreateAgentModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
                 <option value="OTHER">Other</option>
               </select>
             </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-foreground">Status</label>
+              <select
+                {...register('status', {
+                  setValueAs: (v) => v === "true"
+                })}
+                className="flex w-full rounded-xl border-2 border-border bg-background px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10"
+              >
+                <option value="true">Active</option>
+                <option value="false">Inactive</option>
+              </select>
+            </div>
           </form>
         </div>
-        
+
         <div className="border-t bg-muted/30 px-6 py-4 flex justify-end gap-3">
           <Button variant="ghost" onClick={onClose} type="button">Cancel</Button>
           <Button type="submit" form="agent-form" isLoading={createAgent.isPending}>Add Agent</Button>
@@ -74,7 +87,7 @@ export default function Agents() {
   const [search, setSearch] = useState('');
   const { data: agents = [], isLoading } = useAgents();
 
-  const filteredAgents = agents.filter(agent => 
+  const filteredAgents = (agents || []).filter(agent =>
     agent.userName?.toLowerCase().includes(search.toLowerCase()) ||
     agent.userEmail?.toLowerCase().includes(search.toLowerCase())
   );
@@ -96,9 +109,9 @@ export default function Agents() {
         <div className="p-4 border-b flex justify-between items-center bg-muted/20">
           <div className="relative w-full max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <input 
-              type="text" 
-              placeholder="Search agents..." 
+            <input
+              type="text"
+              placeholder="Search agents..."
               value={search}
               onChange={e => setSearch(e.target.value)}
               className="w-full pl-9 pr-4 py-2 bg-background border rounded-lg text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"

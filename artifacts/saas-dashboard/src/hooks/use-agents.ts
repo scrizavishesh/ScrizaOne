@@ -12,19 +12,20 @@ export const agentSchema = z.object({
   userGender: z.enum(["MALE", "FEMALE", "OTHER"]),
   designation: z.string().min(2, "Designation required"),
   roleType: z.literal("AGENT"),
+  status: z.boolean().default(true)
 });
 export type AgentInput = z.infer<typeof agentSchema>;
 
 export function useAgents() {
   const dispatch = useDispatch();
-  
+
   return useQuery({
     queryKey: ['agents'],
     queryFn: async () => {
       try {
         const res = await apiClient.get('/user/getAll?search=ACTIVE');
-        dispatch(setAgents(res.data));
-        return res.data;
+        dispatch(setAgents(res.data.users));
+        return res.data.users;
       } catch (err) {
         // Fallback mock data for preview environments with HTTP/HTTPS mixed content issues
         console.warn("Failed to fetch agents. Using mock data.");

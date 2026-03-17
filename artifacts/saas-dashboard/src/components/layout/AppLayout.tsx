@@ -37,10 +37,9 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     <>
       <div className="flex h-16 items-center px-6 border-b border-border/50">
         <div className="flex items-center gap-2 text-primary">
-          <div className="p-1.5 bg-primary/10 rounded-lg">
-            <LayoutDashboard className="h-6 w-6" />
-          </div>
-          <span className="text-xl font-display font-bold text-foreground">SocialOne</span>
+           <div>
+              <img src="/Main_logo.png" alt="SocialOne Logo" className="h-12 w-auto" />
+            </div>
         </div>
       </div>
       <div className="flex-1 overflow-y-auto py-4 px-3 space-y-1">

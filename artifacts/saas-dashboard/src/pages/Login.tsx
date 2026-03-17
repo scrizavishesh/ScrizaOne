@@ -26,8 +26,8 @@ export default function Login() {
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-background relative z-10">
         <div className="w-full max-w-md space-y-8 animate-slide-up">
           <div className="flex flex-col items-center text-center">
-            <div className="h-12 w-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-6">
-              <LayoutDashboard className="h-7 w-7" />
+            <div className="mb-6">
+              <img src="/Main_logo.png" alt="SocialOne Logo" className="h-12 w-auto" />
             </div>
             <h1 className="text-3xl font-display font-bold text-foreground">Welcome back</h1>
             <p className="mt-2 text-muted-foreground">Sign in to your SocialOne dashboard</p>
@@ -77,20 +77,13 @@ export default function Login() {
       </div>
 
       {/* Right side - Hero Image */}
-      <div className="hidden lg:block lg:w-1/2 relative bg-primary overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-purple-600 to-primary mix-blend-multiply" />
-        <img 
-          src={`${import.meta.env.BASE_URL}images/auth-bg.png`} 
-          alt="Abstract background" 
-          className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay"
-        />
-        <div className="absolute inset-0 flex flex-col justify-center px-16 text-white z-10">
-          <h2 className="text-4xl font-display font-bold leading-tight mb-4">
-            Manage all your social<br/>channels in one place.
-          </h2>
-          <p className="text-lg text-primary-foreground/80 max-w-md">
-            The complete toolkit for scaling your customer support across WhatsApp, Facebook, and Instagram.
-          </p>
+      <div className="hidden lg:block lg:w-1/2 relative bg-white overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img
+            src="/Login_page.png"
+            alt="Abstract background"
+            className="max-w-full max-h-full object-contain"
+          />
         </div>
       </div>
     </div>
